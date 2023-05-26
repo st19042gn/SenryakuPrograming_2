@@ -18,3 +18,8 @@ double calcTrust(int id, int *h, int round, int n){
     }
     return (ret /= (double)n);
 }
+
+int isSippe(int *h, int round, int ID){
+    int sippe;
+    
+}
