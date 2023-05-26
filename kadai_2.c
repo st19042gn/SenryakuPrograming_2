@@ -93,9 +93,7 @@ int play_0(int ID,int n,int SC[2] , int *H)/*ID0の関数*/{
     if(max_total == qq){
         
     }
-    if(max_total == rr){ //小出水担当
-
-    }
+    
     if(max_total == ps){
 
     }
