@@ -90,13 +90,16 @@ int play_0(int ID,int n,int SC[2] , int *H)/*ID0の関数*/{
 
     const int max_total = MAX(qq, ps, rr);
 
+    double trust = calcTrust(ID, H, n, 30);
+    printf("%lf\n", trust);
+
     if(max_total == qq){
         
     }
-    if(max_total == rr){
+    if(max_total == rr){    
 
     }
-    if(max_total == ps){
+    if(max_total == ps){    
 
     }
 }
