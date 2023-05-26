@@ -135,14 +135,11 @@ int play_0(int ID,int n,int SC[2] , int *H)/*ID0の関数*/{
     }
     if(max_total == ps){
         //相手がしっぺ返しかどうか判断
-        if(n==1) return 1;
-        if(n==2) return 0;
+        if(n==0) return 1;
+        if(n==1) return 0;
 
         int pre_act = *(H+2*(n-1)+(ID^1));
-        return pre_act;
-
-        //int sippe = isSippe(H, n-1, ID);
-        
+        return pre_act;   
     }
 }
 
