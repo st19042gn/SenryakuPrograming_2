@@ -96,7 +96,34 @@ int play_0(int ID,int n,int SC[2] , int *H)/*ID0の関数*/{
     if(max_total == qq){
         
     }
-    
+    if(max_total == rr){ //小出水担当
+        int t,i,j;
+        while(n<30) return 1;
+        if(trust) {
+            if(ps>=qq) { //片方裏切りの点>=協力の点
+                return 1;
+            }
+            if(qq>ps) { //協力の点>片方裏切りの点
+                t = *(H+2*(n-1)+(ID^1));
+                i = *(H+2*(n-2)+(ID^1));
+                j = *(H+2*(n-3)+(ID^1));
+                if(t==0 && i==0 && j==0) return 0;
+                return 1;
+            }
+        }
+        else {
+            if(ps>=qq) { //片方裏切りの点>=協力の点
+                return 1;
+            }
+            if(qq>ps) { //協力の点>片方裏切りの点
+                t = *(H+2*(n-1)+(ID^1));
+                i = *(H+2*(n-2)+(ID^1));
+                j = *(H+2*(n-3)+(ID^1));
+                if(t==0 && i==0 && j==0) return 0;
+                return 1;
+            }
+        }
+    }
     if(max_total == ps){
 
     }
