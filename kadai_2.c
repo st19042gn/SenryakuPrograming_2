@@ -94,7 +94,7 @@ int play_0(int ID,int n,int SC[2] , int *H)/*ID0の関数*/{
     printf("%lf\n", trust);
 
     if(max_total == qq){    //岡野
-        if((trust <= 0.7) && (rr-ps) > 4) { //信頼度が一定以下かつrrとpsの差が大きいとき
+        if((trust <= 0.7) && (rr-ps) < 4) { //信頼度が一定以下かつrrとpsの差が大きいとき
             if((rand()&100+1) >= (1-trust)*100) {   //０~100までの乱数が暴力度(1-信頼度)より大きいとき→暴力度%で裏切る。
                 srand((int)(trust*100));    //乱数のタネの設定
                 return 1;
@@ -106,15 +106,13 @@ int play_0(int ID,int n,int SC[2] , int *H)/*ID0の関数*/{
         }
         else return 0;  //信頼度が一定以上のとき、または信頼度は一定以下だがrrのps差が小さく最低値覚悟で最大値を狙う方が良いと判断したとき
     }
-    
-        if(max_total == rr){ //小出水担当
+    if(max_total == rr){ //小出水担当
         int t,i,j;
         while(n<30) return 1;
         if(trust <= 0.7) {
             if(ps>=qq) { //片方裏切りの点>=協力の点
                 return 1;
             }
-
             if(qq>ps) { //基本的には攻撃すればいいけど、協力できるなら協力する
                 t = *(H+2*(n-1)+(ID^1));
                 i = *(H+2*(n-2)+(ID^1));
@@ -123,12 +121,10 @@ int play_0(int ID,int n,int SC[2] , int *H)/*ID0の関数*/{
                 return 1;
             }
         }
-
         else { //パレード最適を目指したい
             if(ps>=qq) { //片方裏切りの点>=協力の点
                 return 1;
             }
-            
             if(qq>ps) { //協力したい
                 t = *(H+2*(n-1)+(ID^1));
                 i = *(H+2*(n-2)+(ID^1));
@@ -136,7 +132,7 @@ int play_0(int ID,int n,int SC[2] , int *H)/*ID0の関数*/{
                 return 1;
             }
         }
-
+    }
     if(max_total == ps){
 
     }
