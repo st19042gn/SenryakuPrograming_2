@@ -93,37 +93,20 @@ int play_0(int ID,int n,int SC[2] , int *H)/*ID0の関数*/{
     double trust = calcTrust(ID, H, n, 30);
     printf("%lf\n", trust);
 
-    if(max_total == qq){
-        
-    }
-    if(max_total == rr){ //小出水担当
-        int t,i,j;
-        while(n<30) return 1;
-        if(trust) {
-            if(ps>=qq) { //片方裏切りの点>=協力の点
+    if(max_total == qq){    //岡野
+        if((trust <= 0.7) && (rr-ps) < 4) { //信頼度が一定以下かつrrとpsの差が大きいとき
+            if((rand()&100+1) >= (1-trust)*100) {   //０~100までの乱数が暴力度(1-信頼度)より大きいとき→暴力度%で裏切る。
+                srand((int)(trust*100));    //乱数のタネの設定
                 return 1;
             }
-            if(qq>ps) { //協力の点>片方裏切りの点
-                t = *(H+2*(n-1)+(ID^1));
-                i = *(H+2*(n-2)+(ID^1));
-                j = *(H+2*(n-3)+(ID^1));
-                if(t==0 && i==0 && j==0) return 0;
-                return 1;
+            else {
+                srand((int)(trust*100));    //乱数のタネの設定
+                return 0;
             }
         }
-        else {
-            if(ps>=qq) { //片方裏切りの点>=協力の点
-                return 1;
-            }
-            if(qq>ps) { //協力の点>片方裏切りの点
-                t = *(H+2*(n-1)+(ID^1));
-                i = *(H+2*(n-2)+(ID^1));
-                j = *(H+2*(n-3)+(ID^1));
-                if(t==0 && i==0 && j==0) return 0;
-                return 1;
-            }
-        }
+        else return 0;  //信頼度が一定以上のとき、または信頼度は一定以下だがrrのps差が小さく最低値覚悟で最大値を狙う方が良いと判断したとき
     }
+    
     if(max_total == ps){
 
     }
