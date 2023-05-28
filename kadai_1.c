@@ -87,12 +87,6 @@ int play_0(int ID,int n,int SC[2] , int *H)/*ID0の関数*/{
     t = *(H+2*(n-1)+(ID^1));
     i = *(H+2*(n-2)+(ID^1));
     j = *(H+2*(n-3)+(ID^1));
-    if(n==1){
-        if(t==0) return 0;
-    }
-    if(n==2){
-        if(t==0 && i==0) return 0;
-    }
     if(t==0 && i==0 && j==0) return 0;
     return 1;
 }
