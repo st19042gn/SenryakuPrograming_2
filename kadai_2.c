@@ -93,7 +93,7 @@ int play_0(int ID,int n,int SC[2] , int *H)/*ID0の関数*/{
     double trust = calcTrust(ID, H, n, 30);
 
     if(max_total == qq){    //岡野
-        if((trust <= 0.7) && (rr-ps) < 4) { //信頼度が一定以下かつrrとpsの差が大きいとき
+        if((trust <= 0.7) && (rr-ps) > 4) { //信頼度が一定以下かつrrとpsの差が大きいとき
             if((rand()&100+1) >= (1-trust)*100) {   //０~100までの乱数が暴力度(1-信頼度)より大きいとき→暴力度%で裏切る。
                 srand((int)(trust*100));    //乱数のタネの設定
                 return 1;
