@@ -18,3 +18,7 @@ double calcTrust(int id, int *h, int round, int n){
     }
     return (ret /= (double)n);
 }
+
+int preResult(int *h, int round){
+    return (*(h+2*(round-1)) + *(h+2*(round-1)+1));
+}

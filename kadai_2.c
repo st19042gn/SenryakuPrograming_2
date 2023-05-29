@@ -91,7 +91,6 @@ int play_0(int ID,int n,int SC[2] , int *H)/*ID0の関数*/{
     const int max_total = MAX(qq, ps, rr);
 
     double trust = calcTrust(ID, H, n, 30);
-    printf("%lf\n", trust);
 
     if(max_total == qq){    //岡野
         if((trust <= 0.7) && (rr-ps) < 4) { //信頼度が一定以下かつrrとpsの差が大きいとき
@@ -133,13 +132,32 @@ int play_0(int ID,int n,int SC[2] , int *H)/*ID0の関数*/{
             }
         }
     }
-    if(max_total == ps){
-        //相手がしっぺ返しかどうか判断
-        if(n==0) return 1;
-        if(n==1) return 0;
+    if (max_total == ps)
+    {
+        /*相手がしっぺ返しと仮定して
+        ある程度こちらもしっぺ返しで動く*/ 
+        if(n == 0) return 1;
+        if(n == 1) return 0;
 
-        int pre_act = *(H+2*(n-1)+(ID^1));
-        return pre_act;   
+        int preAct = *(H + 2*(n-1) + (ID^1));
+        if(n <= 10) return preAct;
+        
+        /*ある程度行った後は前の試合を見て動く。*/
+        if(n > 10){
+            switch(preResult(H, n)){
+                case 0: //前回どちらも殴らなかった場合
+                    return 1;
+                    break;
+                case 1: //前回片方が殴った場合
+                    return preAct;
+                    break;
+                case 2: //前回両方が殴った場合
+                    return 0;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
 
